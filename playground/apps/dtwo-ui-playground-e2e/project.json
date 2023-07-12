@@ -1,0 +1,33 @@
+{
+  "name": "dtwo-ui-playground-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/dtwo-ui-playground-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/dtwo-ui-playground-e2e/cypress.config.ts",
+        "devServerTarget": "dtwo-ui-playground:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "dtwo-ui-playground:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "dtwo-ui-playground:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/dtwo-ui-playground-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["dtwo-ui-playground"]
+}

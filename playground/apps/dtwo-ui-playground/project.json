@@ -1,0 +1,78 @@
+{
+  "name": "dtwo-ui-playground",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/dtwo-ui-playground/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/dtwo-ui-playground"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "dtwo-ui-playground:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "dtwo-ui-playground:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "dtwo-ui-playground:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "dtwo-ui-playground:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "dtwo-ui-playground:build:development"
+        },
+        "production": {
+          "buildTarget": "dtwo-ui-playground:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/apps/dtwo-ui-playground"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/dtwo-ui-playground"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/dtwo-ui-playground/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "dtwo-ui-playground:build"
+      }
+    }
+  },
+  "tags": []
+}
