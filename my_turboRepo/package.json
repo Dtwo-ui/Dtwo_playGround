@@ -13,7 +13,7 @@
     "prettier": "^2.5.1",
     "turbo": "latest"
   },
-  "name": "my_turboRepo",
+  "name": "my_turborepo",
   "packageManager": "yarn@1.22.19",
   "workspaces": [
     "apps/*",
